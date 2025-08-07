@@ -3,6 +3,7 @@
     <h1>🌡️ Dashboard de Sensores</h1>
     <p><strong>Temperatura:</strong> {{ data?.temperatura }} °C</p>
     <p><strong>Humedad:</strong> {{ data?.humedad }} %</p>
+    <p><strong>Conductividad:</strong> {{ data?.conductividad}} V</p>
   </div>
 </template>
 
