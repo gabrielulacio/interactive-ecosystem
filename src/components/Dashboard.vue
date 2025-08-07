@@ -11,5 +11,5 @@ import { useDatabaseObject } from 'vuefire';
 import { db } from '../firebase';
 import { ref as dbRef } from 'firebase/database';
 
-const data = useDatabaseObject(dbRef(db, 'sensor/lecturas'));
+const data = useDatabaseObject(dbRef(db, 'realtime_sensors'));
 </script>
