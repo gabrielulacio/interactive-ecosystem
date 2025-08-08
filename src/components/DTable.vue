@@ -44,7 +44,7 @@ const props = defineProps({
 })
 
 const sensorUnits = {
-  'humedad': 'gr/m³',
+  'humedad': '%',
   'conductividad': 'v',
   'temperatura': '°C'
 }

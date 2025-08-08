@@ -27,14 +27,14 @@
         </div>
         <div class="column-2-graphs">
           <h3 class="graph-title">Humidity</h3>
-          <DGraph title="Humidity (gr/m³)" :options="chartOptions" :series="humiditySeries" />
+          <DGraph title="Humidity (%)" :options="chartOptions" :series="humiditySeries" />
         </div>
       </div>
       <div class="column-3">
         <DCard sensorName="Last distance with the plant" :value="realtimeData['distancia']" unit="cm"
           :timestamp="timestamp" class="card" />
         <DCard sensorName="Dirt Conductivity" :value="realtimeData['conductividad']" unit="v" :timestamp="timestamp" />
-        <DCard sensorName="Ambience humidity" :value="realtimeData['humedad']" unit="gr/m³" :timestamp="timestamp" />
+        <DCard sensorName="Ambience humidity" :value="realtimeData['humedad']" unit="%" :timestamp="timestamp" />
         <DCard sensorName="Ambience temperature" :value="realtimeData['temperatura']" unit="°C"
           :timestamp="timestamp" />
       </div>

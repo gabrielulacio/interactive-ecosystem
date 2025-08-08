@@ -25,7 +25,7 @@
                     timestamp="10:45:32" />
                 <DCard sensorName="Conductividad de la tierra" :value="realtimeData['conductividad']" unit="S/m"
                     timestamp="10:45:32" />
-                <DCard sensorName="Humedad del ambiente" :value="realtimeData['humedad']" unit="gr/m³"
+                <DCard sensorName="Humedad del ambiente" :value="realtimeData['humedad']" unit="%"
                     timestamp="10:45:32" />
                 <DCard sensorName="Temperatura del Ambiente" :value="realtimeData['temperatura']" unit="°C"
                     timestamp="10:45:32" />
