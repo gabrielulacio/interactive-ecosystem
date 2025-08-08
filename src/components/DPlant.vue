@@ -1,14 +1,16 @@
 <template>
-    <div class="wrap">
-        <div class="base">
-            <div class="flowerpot"></div>
-            <div class="blade blade-center"></div>
-            <div class="blade blade-left-s"></div>
-            <div class="blade blade-right-s"></div>
-            <div class="blade blade-left-l"></div>
-            <div class="blade blade-right-l"></div>
-        </div>
+  <div class="wrap">
+    <div class="base">
+      <div class="pot-top"></div>
+      <div class="pot-top-shadow"></div>
+      <div class="pot-bot"></div>
+      <div class="blade blade-center"></div>
+      <div class="blade blade-left-s"></div>
+      <div class="blade blade-right-s"></div>
+      <div class="blade blade-left-l"></div>
+      <div class="blade blade-right-l"></div>
     </div>
+  </div>
 </template>
 
 <style setup>
@@ -35,26 +37,32 @@
   transform: scale(1.5);
 }
 
-.flowerpot {
-  position: relative;
+.pot-top {
   width: 100%;
-  height: 70px;
-  overflow: hidden;
-  background-image: linear-gradient(50deg, white 20px, white 21px, transparent 20px), 
-                    linear-gradient(310deg, white 20px, var(--flowerpot-color1) 21px, var(--flowerpot-color1) 100%);
+  height: 20px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  background-color: #FF7043;
+  position: absolute;
   z-index: 2;
 }
 
-.flowerpot::after {
-  content: " ";
+.pot-bot {
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 50px solid #FF7043;
+  z-index: 10;
+}
+
+.pot-top-shadow {
+  width: 100%;
+  height: 0px;
   position: absolute;
-  display: block;
-  left: 30px;
-  top: -5px;
-  width: 60px;
-  height: 90px;
-  background: linear-gradient(285deg, var(--flowerpot-color1) 20px, var(--flowerpot-color2) 21px, var(--flowerpot-color2) 100%);
-  transform: rotate(50deg);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid #F4511E;
+  top: 20px;
+  z-index: 20;
 }
 
 .blade {
@@ -191,15 +199,19 @@
   0% {
     transform: rotateZ(3deg) translateZ(-1px);
   }
+
   25% {
     transform: rotateZ(-4deg) translateZ(-1px);
   }
+
   50% {
     transform: rotateZ(2deg) translateZ(-1px);
   }
+
   75% {
     transform: rotateZ(-6deg) translateZ(-1px);
   }
+
   100% {
     transform: rotateZ(3deg) translateZ(-1px);
   }
@@ -209,15 +221,19 @@
   0% {
     transform: rotateZ(0deg) translateZ(-1px);
   }
+
   25% {
     transform: rotateZ(-3deg) translateZ(-1px);
   }
+
   50% {
     transform: rotateZ(3deg) translateZ(-1px);
   }
+
   75% {
     transform: rotateZ(-1deg) translateZ(-1px);
   }
+
   100% {
     transform: rotateZ(0deg) translateZ(-1px);
   }

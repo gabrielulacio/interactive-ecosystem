@@ -6,6 +6,7 @@
         <div class="dashboard-container">
             <div class="column-1">
                 <!-- <DTable :data="data" /> -->
+                     {{ historicalData }}
             </div>
             <div class="column-2">
                 <div class="column-2-summary">
@@ -31,9 +32,6 @@
             </div>
         </div>
     </div>
-    <div>
-        {{ realtimeData }}
-    </div>
 </template>
 
 <script setup>
@@ -42,8 +40,14 @@ import DCard from '../components/DCard.vue'
 import { useDatabaseObject } from 'vuefire';
 import { db } from '../firebase';
 import { ref as dbRef } from 'firebase/database';
+import { onMounted } from 'vue';
 
 const realtimeData = useDatabaseObject(dbRef(db, 'realtime_sensors'));
+
+onMounted(() => {
+    console.log("DATA:")
+    console.log(historicalData)
+})
 </script>
 
 <style>

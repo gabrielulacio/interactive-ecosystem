@@ -7,7 +7,7 @@
       <span class="sensor-unit">{{ unit }}</span>
     </div>
 
-    <div class="sensor-timestamp">Última medición: {{ timestamp }}</div>
+    <div class="sensor-timestamp">Last measurement: {{ timestamp }}</div>
   </div>
 </template>
 
@@ -24,7 +24,6 @@ defineProps({
 .card {
   width: 100%;
   height: 100%;
-  border-radius: 20px;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;

@@ -3,11 +3,17 @@ import vue from '@vitejs/plugin-vue';
 import path from 'path';
 
 export default defineConfig({
-  plugins: [vue()],
-  root: './', // 👈 asegura que Vite busque desde la raíz
+  plugins: [vue({
+    template: {
+      compilerOptions: {
+        isCustomElement: tag => tag === 'apex-grid'
+      }
+    }
+  })],
+  root: './',
   build: {
     rollupOptions: {
-      input: path.resolve(__dirname, 'index.html'), // 👈 define explícitamente el entry
+      input: path.resolve(__dirname, 'index.html'),
     },
   },
 });
