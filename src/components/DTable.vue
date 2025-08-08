@@ -88,7 +88,7 @@ function capitalize(str) {
   border-radius: 20px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   padding: 0.5rem 2.5rem 1rem 1.5rem;
-  overflow-x: hidden;
+  overflow-x: auto;
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: #999 transparent;

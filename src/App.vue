@@ -6,7 +6,7 @@
         <p>Your data, your advantage.</p>
       </div>
       <div class="header-button">
-        <DButton @toggle="toggleFunction" />
+        <DButton v-model="switchView" />
       </div>
     </div>
     <div class="dashboard-container screen-container-background">
@@ -56,6 +56,7 @@ import { ref as vueRef, watch as vueWatch, computed as computedVue } from 'vue'
 
 const realtimeData = useDatabaseObject(dbRef(db, 'realtime_sensors'));
 const historicalData = useDatabaseObject(dbRef(db, 'historical_sensors'));
+const switchViewData = useDatabaseObject(dbRef(db, 'control/ultrasonic_led'));
 const combinedData = vueRef({});
 
 const conductivityData = vueRef([]);
@@ -69,10 +70,9 @@ const humiditySeries = vueRef([]);
 const switchView = vueRef(false);
 const timestamp = vueRef(null);
 
-const toggleFunction = () => {
-  switchView.value = !switchView.value;
-  dbSet(dbRef(db, 'control/ultrasonic_led'), switchView.value);
-}
+vueWatch(switchView, (newValue) => {
+  dbSet(dbRef(db, 'control/ultrasonic_led'), newValue);
+}, { immediate: true });
 
 const chartOptions = computedVue(() => ({
   chart: { type: 'area', toolbar: { show: false }, zoom: { enabled: false } },
@@ -102,6 +102,12 @@ const filterHistoricalData = (data, clave) => {
 vueWatch(realtimeData, (newData) => {
   timestamp.value = new Date().toLocaleTimeString()
 });
+
+vueWatch(switchViewData, (newValue) => {
+  if (newValue != undefined) {
+    switchView.value = newValue['$value']
+  }
+}, { immediate: true });
 
 vueWatch(historicalData, (newData) => {
   if (newData && typeof newData === 'object') {
@@ -174,7 +180,7 @@ vueWatch(historicalData, (newData) => {
 <style>
 .screen-container {
   width: 100%;
-  height: 100dvh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background: linear-gradient(135deg, #f7f3e9 0%, #e8dcc6 100%);
@@ -363,5 +369,65 @@ vueWatch(historicalData, (newData) => {
 
 .plant-container {
   min-height: 250px;
+}
+
+@media (max-width: 768px) {
+  .screen-container {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+
+  .screen-container::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .screen-container::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .screen-container::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .screen-container::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  .dashboard-container {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .column-1,
+  .column-2,
+  .column-3 {
+    height: 300px;
+    /* Alto fijo para que el scroll horizontal sea visible */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    /* Items en fila dentro de cada columna */
+    overflow-x: auto;
+    /* Scroll horizontal */
+    overflow-y: hidden;
+    /* No scroll vertical */
+    gap: 1rem;
+    padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .column-1>*,
+  .column-2>*,
+  .column-3>* {
+    flex: 0 0 auto;
+    /* Items no se expanden, para scroll correcto */
+    scroll-snap-align: start;
+  }
 }
 </style>

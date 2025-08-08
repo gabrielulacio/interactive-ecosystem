@@ -1,15 +1,19 @@
 <template>
-    <input type="checkbox" name="check-toggle" id="checkbox" hidden="" @change="onToggle">
+    <input type="checkbox" name="check-toggle" id="checkbox" hidden="" @change="onToggle" :checked="modelValue">
     <label for="checkbox" class="toggle">
         <div class="toggle__circle"></div>
     </label>
 </template>
 
 <script setup>
-const emit = defineEmits(['toggle'])
+const props = defineProps({
+  modelValue: Boolean
+})
+
+const emit = defineEmits(['update:modelValue'])
 
 function onToggle(event) {
-    emit('toggle', event.target.checked)
+  emit('update:modelValue', event.target.checked)
 }
 </script>
 
