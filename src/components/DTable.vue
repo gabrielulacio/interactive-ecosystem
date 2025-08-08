@@ -66,7 +66,7 @@ const processedRows = computed(() => {
       fecha_hora,
       ...values
     }))
-    .sort((a, b) => new Date(a.fecha_hora) - new Date(b.fecha_hora))
+    .sort((a, b) => new Date(b.fecha_hora) - new Date(a.fecha_hora))
 })
 
 function formatTime(timestamp) {
