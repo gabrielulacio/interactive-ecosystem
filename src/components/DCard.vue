@@ -71,4 +71,10 @@ defineProps({
   color: white;
   font-weight: 400;
 }
+
+@media (max-width: 768px) {
+    .card {
+        width: 350px;
+    }
+}
 </style>

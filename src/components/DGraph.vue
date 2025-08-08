@@ -35,4 +35,10 @@ defineProps({
 .apexcharts-tooltip {
   z-index: 9999 !important;
 }
+
+@media (max-width: 768px) {
+    .graphic-wrapper {
+        transform: scale(0.8);
+    }
+}
 </style>
